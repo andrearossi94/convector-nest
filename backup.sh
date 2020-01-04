@@ -21,4 +21,4 @@ tar -zcvf $FILE \
   --exclude-tag-all=$FILE_EXCLUDE \
   --exclude='FILE|DIR' \
   ../NodeNestPackages \
-  ../NodeNestJsHyperLedgerConvectorRestStarter
+  ../NodeNestJsHyperLedgerConvectorStarter

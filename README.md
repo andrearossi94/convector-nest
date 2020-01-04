@@ -195,8 +195,6 @@ $ cd node-nestjs-hyperledger-convector-starter
 ```shell
 # install lerna and typescript
 $ sudo npm i -g lerna typescript
-# bootstrap packages dependencies
-$ lerna bootstrap
 # check versions
 $ tsc -v
 Version 3.7.4
@@ -207,10 +205,10 @@ $ lerna -v
 ### Install lerna packages dependencies
 
 ```shell
-# first build common library: this is required on fresh clones before lerna bootstrap, to prevent the error#1
+# first build common library: this is required on fresh clones before lerna bootstrap, to prevent the below error#1 Cannot find module '@convector-sample/common'
 $ npx lerna run build --scope @convector-sample/common --stream
-$ npx lerna bootstrap
-lerna success Bootstrapped 6 packages
+# install dependencies, this will trigger lerna bootstrap
+$ npm i
 ```
 
 #### error#1

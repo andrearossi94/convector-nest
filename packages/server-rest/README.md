@@ -55,9 +55,6 @@ $ npx lerna run start:prod --scope @convector-sample/server-rest --stream
 $ npx lerna run start:dev --scope @convector-sample/server-rest --stream
 # or run in debug mode
 $ npx lerna run start:debug --scope @convector-sample/server-rest --stream
-# output
-@convector-sample/server-rest: [Nest] 13860   - 2019-12-25 21:15:15   HTTP Server running on port [3080] +19ms
-@convector-sample/server-rest: [Nest] 13860   - 2019-12-25 21:15:15   HTTPS Server running on port [3444] +1ms
 ```
 
 ## Get JWT Access Token
