@@ -7,7 +7,7 @@ clear
 # lift hyperledger
 npm run env:restart
 # deploy smart contract
-npm run cc:start -- person
+npm run cc:start -- cartellaclinica
 
 # sleep 20 seconds
 sleep 20
@@ -19,8 +19,8 @@ npm run seed
 ./views/install.sh
 
 # prevent lost props, rebuild chaincode packages
-npx lerna run build --scope person-cc
-npx lerna run build --scope participant-cc
+npx lerna run build --scope cartellaclinica-cc
+npx lerna run build --scope personale-cc
 
 # invoke some stuff
 npx hurl invoke person person_get 1-100-100
