@@ -13,69 +13,46 @@ export class PersonaleController extends ConvectorController {
 
   @Invokable()
   public async register(
-    @Param(yup.string())
-    id: string,
-    @Param(yup.string())
-    name: string,
+    @Param(Personale)
+    personale: Personale
+
   ) {
     // Retrieve to see if exists
-    const existing = await Personale.getOne(id);
-
+    const existing = await Personale.getOne(personale.id);
     if (!existing || !existing.id) {
-      let personale = new Personale();
-      personale.id = id;
-      personale.name = name || id;
-      personale.msp = this.fullIdentity.getMSPID();
+      const exists = await Personale.query(Personale, {
+        selector: {
+          type: c.CONVECTOR_MODEL_PATH_PERSONALE,
+          ['username']: personale.username,
+        }
+      });
+      if ((exists as Personale[]).length > 0) {
+        throw new Error('There is a person registered with that username already');
+      }
+      /*const existsUsername = await Personale.query(Personale, {
+        "selector": {
+           "username": {
+              "$eq": personale.username
+           }
+        }
+      });
+      if (!existsUsername) {
+        throw new Error('There is a person registered with that username already');
+      }*/
+
+      personale.msp = this.tx.identity.getMSPID();
       // Create a new identity
       personale.identities = [{
         fingerprint: this.sender,
         status: true
       }];
+      console.log(JSON.stringify(personale));
       await personale.save();
     } else {
-      throw new Error('Identity exists already, please call changeIdentity fn for updates');
+      throw new Error('this paziente exists already');
     }
   }
-
-  @Invokable()
-  public async changeIdentity(
-    @Param(yup.string())
-    id: string,
-    @Param(yup.string())
-    newIdentity: string
-  ) {
-    // Check permissions
-    let isAdmin = this.fullIdentity.getAttributeValue('admin');
-    let requesterMSP = this.fullIdentity.getMSPID();
-
-    // Retrieve to see if exists
-    const existing = await Personale.getOne(id);
-    if (!existing || !existing.id) {
-      throw new Error('No identity exists with that ID');
-    }
-
-    if (existing.msp != requesterMSP) {
-      throw new Error('Unauthorized. MSPs do not match');
-    }
-
-    if (!isAdmin) {
-      throw new Error('Unauthorized. Requester identity is not an admin');
-    }
-
-    // Disable previous identities!
-    existing.identities = existing.identities.map(identity => {
-      identity.status = false;
-      return identity;
-    });
-
-    // Set the enrolling identity 
-    existing.identities.push({
-      fingerprint: newIdentity,
-      status: true
-    });
-
-    await existing.save();
-  }
+  
 
   @Invokable()
   public async get(
