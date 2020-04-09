@@ -1,7 +1,5 @@
 0 silly argv { _: [ 'add' ],
-0 silly argv   scope: 'cartellaclinica-cc',
-0 silly argv   'include-filtered-dependencies': true,
-0 silly argv   includeFilteredDependencies: true,
+0 silly argv   scope: '@convector-sample/server-rest',
 0 silly argv   bootstrap: false,
 0 silly argv   globs: [],
 0 silly argv   lernaVersion: '3.16.4',

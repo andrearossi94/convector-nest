@@ -39,6 +39,11 @@ hurl invoke cartellaclinica cartellaclinica_degenza "Cart2" -u dottore1
 echo "°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°"
 sleep 1
 hurl invoke cartellaclinica cartellaclinica_degenza "Cart2" -u paziente1
+echo "Test username, dovrebbe andare a buon fine"
+hurl invoke cartellaclinica cartellaclinica_getByUsername "Paz1" -u dottore1
+sleep 1
+echo "Dovrebbe dare errore"
+hurl invoke cartellaclinica cartellaclinica_getByUsername "Paz1" -u dottore2
 echo "FINE"
 
 

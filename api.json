@@ -1,0 +1,42 @@
+[
+    {
+        "function": "register",
+        "verb": "post",
+        "controller": "PersonaleController"
+    },
+    {
+        "function": "get",
+        "verb": "get",
+        "controller": "PersonaleController"
+    },
+    {
+        "function": "getAll",
+        "verb": "get",
+        "controller": "PersonaleController"
+    },
+    {
+        "function": "create",
+        "verb": "post",
+        "controller": "CartellaclinicaController"
+    },
+    {
+        "function": "degenza",
+        "verb": "post",
+        "controller": "CartellaclinicaController"
+    },
+    {
+        "function": "cambiaconsenso",
+        "verb": "post",
+        "controller": "CartellaclinicaController"
+    },
+    {
+        "function": "get",
+        "verb": "get",
+        "controller": "CartellaclinicaController"
+    },
+    {
+        "function": "getByUsername",
+        "verb": "get",
+        "controller": "CartellaclinicaController"
+    }
+]

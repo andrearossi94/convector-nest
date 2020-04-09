@@ -124,11 +124,11 @@ export class CartellaclinicaController extends ConvectorController<ChaincodeTx> 
   @Invokable()
   public async getByUsername(
     @Param(yup.string())
-    username: string,
+    pazienteid: string,
   ) {
     // get host personale from fingerprint
-    const personale: Personale = await getPersonaleByIdentity(this.sender);
-    const existing = await Cartellaclinica.query(Cartellaclinica, {
+    //const personale: Personale = await getPersonaleByIdentity(this.sender);
+    /*const existing = await Cartellaclinica.query(Cartellaclinica, {
       selector: {
         type: c.CONVECTOR_MODEL_PATH_CARTELLACLINICA,
         username,
@@ -139,7 +139,29 @@ export class CartellaclinicaController extends ConvectorController<ChaincodeTx> 
     });
     if (!existing || !existing[0].id) {
       throw new Error(`No cartellaclinica exists with that username ${username}`);
+    }*/
+    const exists = await Cartellaclinica.query(Cartellaclinica, {
+      selector: {
+        type: c.CONVECTOR_MODEL_PATH_CARTELLACLINICA,
+        ['pazienteID']: pazienteid,
+      }
+    });
+    if ((exists as Cartellaclinica[]).length <= 0) {
+      throw new Error('There is a person registered with that username already');
     }
-    return existing;
+    let dottore = await Personale.getOne(exists[0].dottoreID);
+    let paziente = await Personale.getOne(exists[0].pazienteID);
+
+
+    const dotActiveIdentity = dottore.identities.filter(identity => identity.status === true)[0];
+    const pazActiveIdentity = paziente.identities.filter(identity => identity.status === true)[0]
+
+    if((dotActiveIdentity.fingerprint === this.sender && exists[0].consenso) || pazActiveIdentity.fingerprint === this.sender){
+      return exists[0];
+    }else{
+      throw new Error(`Identity ${this.sender} is not allowed to views this certificate`);
+    }
+    //return exists;
+    
   }
 }

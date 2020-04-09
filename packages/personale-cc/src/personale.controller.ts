@@ -29,16 +29,6 @@ export class PersonaleController extends ConvectorController {
       if ((exists as Personale[]).length > 0) {
         throw new Error('There is a person registered with that username already');
       }
-      /*const existsUsername = await Personale.query(Personale, {
-        "selector": {
-           "username": {
-              "$eq": personale.username
-           }
-        }
-      });
-      if (!existsUsername) {
-        throw new Error('There is a person registered with that username already');
-      }*/
 
       personale.msp = this.tx.identity.getMSPID();
       // Create a new identity
