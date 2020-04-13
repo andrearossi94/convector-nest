@@ -205,10 +205,10 @@ $ lerna -v
 ### Install lerna packages dependencies
 
 ```shell
-# first build common library: this is required on fresh clones before lerna bootstrap, to prevent the below error#1 Cannot find module '@convector-sample/common'
-$ npx lerna run build --scope @convector-sample/common --stream
 # install dependencies, this will trigger lerna bootstrap
 $ npm i
+# first build common library: this is required on fresh clones before lerna bootstrap, to prevent the below error#1 Cannot find module '@convector-sample/common'
+$ npx lerna run build --scope @convector-sample/common --stream
 ```
 
 #### error#1
