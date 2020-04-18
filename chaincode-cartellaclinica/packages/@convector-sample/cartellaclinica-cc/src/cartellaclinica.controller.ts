@@ -115,31 +115,11 @@ export class CartellaclinicaController extends ConvectorController<ChaincodeTx> 
     //return await Cartellaclinica.getOne(id);
   }
 
-  /*@Invokable()
-  public async getAll(): Promise<FlatConvectorModel<Cartellaclinica>[]> {
-    return (await Cartellaclinica.getAll(c.CONVECTOR_MODEL_PATH_CARTELLACLINICA))
-      .map(cartellaclinica => cartellaclinica.toJSON() as Cartellaclinica);
-  }*/
-
   @Invokable()
   public async getByUsername(
     @Param(yup.string())
     pazienteid: string,
   ) {
-    // get host personale from fingerprint
-    //const personale: Personale = await getPersonaleByIdentity(this.sender);
-    /*const existing = await Cartellaclinica.query(Cartellaclinica, {
-      selector: {
-        type: c.CONVECTOR_MODEL_PATH_CARTELLACLINICA,
-        username,
-        personale: {
-          id: personale.id
-        }
-      }
-    });
-    if (!existing || !existing[0].id) {
-      throw new Error(`No cartellaclinica exists with that username ${username}`);
-    }*/
     const exists = await Cartellaclinica.query(Cartellaclinica, {
       selector: {
         type: c.CONVECTOR_MODEL_PATH_CARTELLACLINICA,
@@ -147,7 +127,7 @@ export class CartellaclinicaController extends ConvectorController<ChaincodeTx> 
       }
     });
     if ((exists as Cartellaclinica[]).length <= 0) {
-      throw new Error('There is a person registered with that username already');
+      throw new Error('There isn\'t a person registered with that id');
     }
     let dottore = await Personale.getOne(exists[0].dottoreID);
     let paziente = await Personale.getOne(exists[0].pazienteID);
@@ -160,8 +140,6 @@ export class CartellaclinicaController extends ConvectorController<ChaincodeTx> 
       return exists[0];
     }else{
       throw new Error(`Identity ${this.sender} is not allowed to views this certificate`);
-    }
-    //return exists;
-    
+    }    
   }
 }

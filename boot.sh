@@ -2,7 +2,7 @@
 
 echo "Faccio partire la rete"
 
-#npm run:env restart
+#npm run env:restart
 
 #npm run cc:start -- cartellaclinica
 
