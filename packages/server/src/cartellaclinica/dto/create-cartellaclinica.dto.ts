@@ -5,6 +5,4 @@ import { Cartellaclinica } from '../../../../cartellaclinica-cc/src/cartellaclin
 export class CreateCartellaclinicaDto {
   @ApiModelProperty()
   readonly cartellaclinica: Cartellaclinica;
-
 }
-

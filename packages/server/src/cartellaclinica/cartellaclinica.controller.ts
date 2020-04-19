@@ -55,7 +55,7 @@ export class CartellaclinicaController {
   @ApiOkResponse({ description: c.API_RESPONSE_FOUND_RECORDS, type: CreatePersonDto })
   @ApiInternalServerErrorResponse({ description: c.API_RESPONSE_INTERNAL_SERVER_ERROR })
   @ApiUnauthorizedResponse({ description: c.API_RESPONSE_UNAUTHORIZED }) */
-  public async create(@Body() createCartellaclinicaDto: CreateCartellaclinicaDto): Promise<void> {
+  public async create(@Body() createCartellaclinicaDto: Cartellaclinica): Promise<void> {
     try {
       return this.cartellaclinicaService.create(createCartellaclinicaDto);
     } catch (err) {
@@ -72,9 +72,9 @@ export class CartellaclinicaController {
   @ApiOkResponse({ description: c.API_RESPONSE_FOUND_RECORDS, type: AddPersonAttributeDto })
   @ApiInternalServerErrorResponse({ description: c.API_RESPONSE_INTERNAL_SERVER_ERROR })
   @ApiUnauthorizedResponse({ description: c.API_RESPONSE_UNAUTHORIZED }) */
-  public async degenza(@Param('id') id: string, @Body() degenzaDto: DegenzaDto): Promise<Cartellaclinica> {
+  public async degenza(@Param('id') id: string): Promise<Cartellaclinica> {
     try {
-      return (this.cartellaclinicaService.degenza(id) as Promise<Cartellaclinica>);
+      return (this.cartellaclinicaService.degenza(id) as unknown as Promise<Cartellaclinica>);
     } catch (err) {
       Logger.error(JSON.stringify(err));
       throw new HttpException(c.API_RESPONSE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -88,9 +88,9 @@ export class CartellaclinicaController {
   @ApiOkResponse({ description: c.API_RESPONSE_FOUND_RECORDS, type: GetPersonByAttributeDto })
   @ApiInternalServerErrorResponse({ description: c.API_RESPONSE_INTERNAL_SERVER_ERROR })
   @ApiUnauthorizedResponse({ description: c.API_RESPONSE_UNAUTHORIZED }) */
-  public async cambiaconsenso(@Param('id') id: string, @Body() cambiaconsensoDto: CambiaConsensoDto): Promise<Cartellaclinica> {
+  public async cambiaconsenso(@Param('id') id: string): Promise<Cartellaclinica> {
     try {
-      return this.cartellaclinicaService.cambiaconsenso(id);
+      return (this.cartellaclinicaService.cambiaconsenso(id) as unknown as Promise<Cartellaclinica>);
     } catch (err) {
       Logger.error(JSON.stringify(err));
       throw new HttpException(c.API_RESPONSE_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -16,37 +16,43 @@ export class CartellaclinicaService {
     }
   }
 
-    public async getByUsername(username: string): Promise<Cartellaclinica> {
-      try {
-        const user = await CartellaclinicaControllerBackEnd.getByUsername(username);
-        // create Person model
-        const userModel = new Cartellaclinica((user[0]));
-        return userModel;
-      } catch (err) {
-        throw err;
-      }
-    }
-
-  public async degenza(id: string) {
-    
-
-    await ControllerBackEnd.degenza(id);
-
-    const personToReturn = new Cartellaclinica(await CartellaclinicaControllerBackEnd.get(id));
-    return personToReturn.toJSON();
-  }
-
-  public async cambiaconsenso(id: string) {
+  public async getByUsername(username: string): Promise<Cartellaclinica> {
     try {
-      return await CartellaclinicaControllerBackEnd.cambiaconsenso(id);
+      const user = await CartellaclinicaControllerBackEnd.getByUsername(username);
+      // create Person model
+      const userModel = new Cartellaclinica((user[0]));
+      return userModel;
     } catch (err) {
       throw err;
     }
   }
 
-  public async create(createCartellaclinicaDto: CreateCartellaclinicaDto) {
+  public async degenza(id: string) {    
+    try{
+      await CartellaclinicaControllerBackEnd.degenza(id);
+
+     // const cartellaToReturn = new Cartellaclinica(await CartellaclinicaControllerBackEnd.get(id));
+     // return cartellaToReturn.toJSON();
+    }catch (err){
+      throw err;
+    }
+    
+  }
+
+  public async cambiaconsenso(id: string) {
     try {
-      const cartellaclinicaToCreate = new Cartellaclinica({ ...createCartellaclinicaDto });
+
+      await CartellaclinicaControllerBackEnd.cambiaconsenso(id);
+     // const cartellaToReturn = new Cartellaclinica(await CartellaclinicaControllerBackEnd.get(id));
+     // return cartellaToReturn.toJSON();
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  public async create(createCartellaclinicaDto: Cartellaclinica) {
+    try {
+      const cartellaclinicaToCreate = new Cartellaclinica(createCartellaclinicaDto );
       return await CartellaclinicaControllerBackEnd.create(cartellaclinicaToCreate);
     } catch (err) {
       throw err;

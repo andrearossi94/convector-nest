@@ -1,9 +1,9 @@
-import { Controller, Get, HttpStatus, Post, Request, Res, UseGuards, Body } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Post, Request, Res, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiCreatedResponse, ApiExcludeEndpoint, ApiInternalServerErrorResponse, ApiOkResponse, ApiOperation, ApiUnauthorizedResponse, ApiUseTags } from '@nestjs/swagger';
 import { AppService } from './app.service';
-import * as express from 'express';
 import { envVariables as e } from './env';
-import { ApiBearerAuth, ApiCreatedResponse, ApiExcludeEndpoint, ApiInternalServerErrorResponse, ApiOkResponse, ApiOperation, ApiUnauthorizedResponse } from '@nestjs/swagger';
-
+import express = require('express');
 
 @Controller()
 export class AppController {
@@ -13,6 +13,13 @@ export class AppController {
   @ApiExcludeEndpoint()
   redirectToApi(@Res() response: express.Response) {
     response.redirect(e.swaggerApiPath, HttpStatus.PERMANENT_REDIRECT);
+  }
+
+  @UseGuards(AuthGuard('local'))
+  @Post(`/${e.swaggerApiPath}/login`)
+  @ApiUseTags(e.swaggerModuleTagAuth)
+  async login(@Request() req) {
+    return req.user;
   }
 }
 
