@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@convector-sample/common": "0.1.0",
-    "@convector-sample/participant-cc": "^0.1.0",
-    "@convector-sample/person-cc": "^0.1.0",
+    "@convector-sample/personale-cc": "^0.1.0",
+    "@convector-sample/cartellaclinica-cc": "^0.1.0",
     "@nestjs/common": "^6.5.3",
     "@nestjs/core": "6.5.3",
     "@nestjs/jwt": "^6.1.1",

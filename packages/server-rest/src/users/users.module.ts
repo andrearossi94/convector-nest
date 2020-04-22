@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { PersonService } from '../person/person.service';
+import { PersonaleService } from '../personale/personale.service';
 
 @Module({
-  providers: [UsersService, PersonService],
+  providers: [UsersService, PersonaleService],
   exports: [UsersService],
 })
 

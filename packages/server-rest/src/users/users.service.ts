@@ -1,5 +1,5 @@
 import { Injectable, Logger, HttpException, HttpStatus } from '@nestjs/common';
-import { PersonService } from '../person/person.service';
+import { PersonaleService } from '../personale/personale.service';
 import { envVariables as e } from '../env';
 import { appConstants as c } from '../constants';
 
@@ -9,7 +9,7 @@ export type User = any;
 export class UsersService {
   private readonly users: User[];
 
-  constructor(private readonly personService: PersonService) {
+  constructor(private readonly personaleService: PersonaleService) {
     this.users = [
       {
         id: 1,
@@ -34,7 +34,7 @@ export class UsersService {
       return this.users.find(user => user.username === username);
     } else {
       try {
-        return await this.personService.getByUsername(username);
+        return await this.personaleService.get(username);
       } catch (err) {
         Logger.error(JSON.stringify(err));
         const message: string = (err.responses[0]) ? err.responses[0].error.message : c.API_RESPONSE_INTERNAL_SERVER_ERROR;

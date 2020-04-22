@@ -5,14 +5,14 @@ const identityOrg: string = process.env.ORG || 'org1';
 
 export const envVariables: any = {
   // chaincode: the name of the smart contract. This is given when you installed it with hurl install <name> <language>
-  chaincode: process.env.CHAINCODE || 'person',
+  chaincode: process.env.CHAINCODE || 'cartellaclinica',
   // channel: by default a channel (ledger) is created for you with Hurley. Its name is ch1 and each subsequent channel will follow that
   // pattern (ch2, ch3, ch4) check more on channels [here](https://github.com/worldsibu/hurley#hurl-install).
   channel: process.env.CHANNEL || 'ch1',
 
   // Automatically extract credentials by the user id
   // If no .env config is found, fallback to Hurley defaults
-  identityId: process.env.IDENTITY_ID || 'gov',
+  identityId: process.env.IDENTITY_ID || 'admin',
   // identityName: Its the name of the user that will be used to run the server (wallet).
   // In this case Hurley also handles an standard (like user1, user2, user3) depending on how many to told it to create.
   identityName: process.env.IDENTITY || 'admin',
@@ -30,7 +30,7 @@ export const envVariables: any = {
   // Default to common values
   // couchDB*: This properties will define the coordinates to communicate with the CouchDB server of one of the peers.
   // This is because we want to query some data directly and not through the peers - which is another way to do queries.
-  couchDBView: process.env.COUCHDB_VIEW || 'ch1_person',
+  couchDBView: process.env.COUCHDB_VIEW || 'ch1_cartellaclinica',
   couchDBProtocol: process.env.COUCHDB_PROTOCOL || 'http',
   couchDBHost: process.env.COUCHDB_HOST || 'localhost',
   couchDBPort: process.env.COUCHDB_PORT || 5084,

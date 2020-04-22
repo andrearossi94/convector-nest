@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { envVariables as e } from '../env';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
-import { Person } from '@convector-sample/person-cc';
+import { Personale } from '@convector-sample/personale-cc';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +20,7 @@ export class AuthService {
     if (e.authServiceUseMokedUsers === 'true') {
       authorized = (user && user.password === pass);
     } else {
-      authorized = this.bcryptValidate(pass, (user as Person).password);
+      authorized = this.bcryptValidate(pass, (user as Personale).password);
     }
 
     if (authorized) {

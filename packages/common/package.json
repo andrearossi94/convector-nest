@@ -12,6 +12,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
+    "@convector-sample/cartellaclinica-cc": "^0.1.0",
+    "@convector-sample/personale-cc": "^0.1.0",
     "@worldsibu/convector-core": "~1.3.0"
   },
   "devDependencies": {
