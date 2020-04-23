@@ -7,7 +7,7 @@ clear
 # lift hyperledger
 npm run env:restart
 # deploy smart contract
-npm run cc:start -- person
+npm run cc:start -- cartellaclinica
 
 # sleep 20 seconds
 sleep 20

@@ -1,5 +1,5 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Logger, Param, Post, UseGuards } from '@nestjs/common';
-// DA REINSERIRE import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiBadRequestResponse, ApiBearerAuth, ApiInternalServerErrorResponse, ApiOkResponse, ApiOperation, ApiUnauthorizedResponse, ApiUseTags } from '@nestjs/swagger';
 import { Cartellaclinica } from '@convector-sample/cartellaclinica-cc';
 import { appConstants as c } from '../constants';
@@ -18,7 +18,7 @@ export class CartellaclinicaController {
 
   @Get('/:pazienteid/getbyusername')
   @ApiBearerAuth()
-  //@UseGuards(AuthGuard())
+  @UseGuards(AuthGuard())
   @ApiOperation({ title: c.API_OPERATION_GETBYUSERNAME_CARTELLACLINICA })
   @ApiOkResponse({ description: c.API_RESPONSE_FOUND_RECORDS })
   @ApiBadRequestResponse({ description: c.API_RESPONSE_BAD_REQUEST })
@@ -36,7 +36,7 @@ export class CartellaclinicaController {
 
   @Get('/:id')
   @ApiBearerAuth()
-  //@UseGuards(AuthGuard())
+  @UseGuards(AuthGuard())
   @ApiOperation({ title: c.API_OPERATION_GET_CARTELLACLINICA })
   @ApiOkResponse({ description: c.API_RESPONSE_FOUND_RECORD })
   @ApiInternalServerErrorResponse({ description: c.API_RESPONSE_INTERNAL_SERVER_ERROR })
@@ -54,7 +54,7 @@ export class CartellaclinicaController {
 
   @Post('/')
   @ApiBearerAuth()
-  //@UseGuards(AuthGuard())
+  @UseGuards(AuthGuard())
   @ApiOperation({ title: c.API_OPERATION_CREATE_CARTELLACLINICA })
   @ApiOkResponse({ description: c.API_RESPONSE_FOUND_RECORDS, type: CreateCartellaclinicaDto })
   @ApiInternalServerErrorResponse({ description: c.API_RESPONSE_INTERNAL_SERVER_ERROR })
@@ -71,7 +71,7 @@ export class CartellaclinicaController {
 // da guardare
   @Post('/:id/degenza')
   @ApiBearerAuth()
-  //@UseGuards(AuthGuard())
+  @UseGuards(AuthGuard())
   @ApiOperation({ title: c.API_OPERATION_DEGENZA_CARTELLACLINICA })
   @ApiOkResponse({ description: c.API_RESPONSE_FOUND_RECORDS, type: DegenzaDto })
   @ApiInternalServerErrorResponse({ description: c.API_RESPONSE_INTERNAL_SERVER_ERROR })
@@ -87,7 +87,7 @@ export class CartellaclinicaController {
 
   @Post('/:id/cambiaconsenso')
   @ApiBearerAuth()
-  //@UseGuards(AuthGuard())
+  @UseGuards(AuthGuard())
   @ApiOperation({ title: c.API_OPERATION_CAMBIACONSENSO_CARTELLACLINICA })
   @ApiOkResponse({ description: c.API_RESPONSE_FOUND_RECORDS, type: CambiaConsensoDto })
   @ApiInternalServerErrorResponse({ description: c.API_RESPONSE_INTERNAL_SERVER_ERROR })

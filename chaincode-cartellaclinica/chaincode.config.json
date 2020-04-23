@@ -1,0 +1,1 @@
+{"controllers":[{"name":"@convector-sample/personale-cc","version":"file:./packages/personale-cc","controller":"PersonaleController"},{"name":"@convector-sample/cartellaclinica-cc","version":"file:./packages/cartellaclinica-cc","controller":"CartellaclinicaController"},{"name":"@convector-sample/common","version":"file:./packages/common","controller":"CommonController"}]}

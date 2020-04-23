@@ -47,10 +47,10 @@ export class PersonaleService {
   
 
 
-  public async register(registerPersonaleDto: RegisterPersonaleDto) {
+  public async register(registerPersonaleDto: Personale) {
     try {
-      const personaleToCreate = new Personale({ ...registerPersonaleDto });
-      return await PersonaleControllerBackEnd.create(personaleToCreate);
+      const personaleToCreate = new Personale(registerPersonaleDto);
+      return await PersonaleControllerBackEnd.register(personaleToCreate);
     } catch (err) {
       throw err;
     }
