@@ -25,6 +25,9 @@ npx lerna run build --scope participant-cc
 # invoke some stuff
 npx hurl invoke person person_get 1-100-100
 
+#start server
+npx lerna run start --scope @convector-sample/server-rest --stream
+
 # start server/frontend
 echo "start server-rest with: 'npx lerna run start:dev --scope @convector-sample/server-rest --stream'"
 echo "start server-graphql with: 'npx lerna run start:dev --scope @convector-sample/server-graphql --stream'"

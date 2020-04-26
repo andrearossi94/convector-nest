@@ -8,7 +8,7 @@ echo "Faccio partire la rete"
 #npm run cc:start -- cartellaclinica
 
 #Per avviare il server 
-#npx lerna run start:dev --scope @convector-sample/server-rest --stream
+#npx lerna run start --scope @convector-sample/server-rest --stream
 
 echo "Registriamo alcune identità in Fabric"
 node register.js dottore1 dottore ortopedico

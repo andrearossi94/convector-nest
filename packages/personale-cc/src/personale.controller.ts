@@ -13,6 +13,7 @@ import { ChaincodeTx } from '@worldsibu/convector-platform-fabric';
 
 import { Personale } from './personale.model';
 import { ClientIdentity } from 'fabric-shim';
+import { hashPassword } from './utils';
 
 
 @Controller('personale')
@@ -49,6 +50,9 @@ export class PersonaleController extends ConvectorController {
         status: true
       }];
       console.log(JSON.stringify(personale));
+      
+      //Hash della password
+      personale.password = hashPassword(personale.password);
       await personale.save();
     } else {
       throw new Error('this paziente exists already');
