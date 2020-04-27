@@ -11,4 +11,9 @@ export class GetProfileResponseDto {
   @IsString()
   @IsNotEmpty()
   readonly username: string;
+
+  /*@ApiModelProperty()
+  @IsString()
+  @IsNotEmpty()
+  readonly email: string;*/
 }

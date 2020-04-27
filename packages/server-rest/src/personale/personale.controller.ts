@@ -7,8 +7,8 @@ import { PersonaleControllerBackEnd } from '../convector';
 import { envVariables as e } from '../env';
 import { RegisterPersonaleDto } from './dto';
 
-@Controller(`${e.swaggerApiPath}/${e.swaggerModuleTagParticipant}`)
-@ApiUseTags(e.swaggerModuleTagParticipant)
+@Controller(`${e.swaggerApiPath}/${e.swaggerModuleTagPersonale}`)
+@ApiUseTags(e.swaggerModuleTagPersonale)
 export class PersonaleController {
 
   @Get()

@@ -51,7 +51,7 @@ export class PersonaleController extends ConvectorController {
       }];
       console.log(JSON.stringify(personale));
       
-      //Hash della password
+      //Hash della password con bcrypt
       personale.password = hashPassword(personale.password);
       await personale.save();
     } else {

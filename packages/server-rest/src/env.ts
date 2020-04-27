@@ -16,8 +16,8 @@ export const envVariables: any = {
   swaggerModuleVersion: process.env.SWAGGER_MODULE_VERSION || '1.0',
   swaggerApiPath: process.env.SWAGGER_API_PATH || 'api',
   swaggerModuleTagAuth: process.env.SWAGGER_MODULE_TAG_AUTH || 'auth',
-  swaggerModuleTagPerson: process.env.SWAGGER_MODULE_TAG_CARTELLACLINICA || 'cartellaclinica',
-  swaggerModuleTagParticipant: process.env.SWAGGER_MODULE_TAG_PERSONALE || 'personale',
+  swaggerModuleTagCartellaclinica: process.env.SWAGGER_MODULE_TAG_CARTELLACLINICA || 'cartellaclinica',
+  swaggerModuleTagPersonale: process.env.SWAGGER_MODULE_TAG_PERSONALE || 'personale',
 
   // authService : true: moked users array, false: or ledger person(users) authentication
   authServiceUseMokedUsers: process.env.AUTH_SERVICE_USE_MOKED_USERS || true,

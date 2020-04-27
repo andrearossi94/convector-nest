@@ -8,6 +8,7 @@ echo "Faccio partire la rete"
 #npm run cc:start -- cartellaclinica
 
 #Per avviare il server 
+
 #npx lerna run start --scope @convector-sample/server-rest --stream
 
 echo "Registriamo alcune identità in Fabric"
@@ -26,3 +27,15 @@ hurl invoke cartellaclinica personale_register "{ \"id\": \"Paz2\", \"firstname\
 hurl invoke cartellaclinica cartellaclinica_create "{ \"id\": \"Cart1\", \"pazienteID\": \"Paz1\", \"dottoreID\": \"Dot1\", \"patologia\": \"Frattura\",\"stato\": true, \"consenso\": true }" -u dottore1
 hurl invoke cartellaclinica cartellaclinica_create "{ \"id\": \"Cart2\", \"pazienteID\": \"Paz2\", \"dottoreID\": \"Dot2\", \"patologia\": \"Trauma\", \"stato\": true, \"consenso\": true }" -u dottore2
 echo "FINE"
+
+
+
+# {
+#  "personale": {
+#"id": "Paz11", 
+#"firstname": "Andrea", 
+#"lastname": "Bianchi", 
+#"username": "ar1996", 
+#"password": "andrea123",  
+#"email": "fhrueurf@email.com"}
+#}

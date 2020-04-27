@@ -36,6 +36,7 @@ export class CartellaclinicaController extends ConvectorController {
       
       cartellaclinica.msp = this.tx.identity.getMSPID();
       await cartellaclinica.save();
+      return cartellaclinica;
     } else {
       throw new Error(`Identity ${this.sender} is not allowed to update ${dottoreCurrentIdentity} cartellaclinica just can`);
     }
@@ -67,6 +68,7 @@ export class CartellaclinicaController extends ConvectorController {
       
       cartellaclinica.stato = !cartellaclinica.stato;
       await cartellaclinica.save();
+      return cartellaclinica;
     } else {
       throw new Error(`Identity ${this.sender} is not allowed to update ${dottoreCurrentIdentity} cartellaclinica just can`);
     }
@@ -97,6 +99,7 @@ export class CartellaclinicaController extends ConvectorController {
       
       cartellaclinica.consenso = !cartellaclinica.consenso;
       await cartellaclinica.save();
+      return cartellaclinica;
       
     } else {
       throw new Error(`Identity ${this.sender} is not allowed to update ${pazienteCurrentIdentity} cartellaclinica just can`);
