@@ -12,10 +12,10 @@ export const envVariables: any = {
 
   // Automatically extract credentials by the user id
   // If no .env config is found, fallback to Hurley defaults
-  identityId: process.env.IDENTITY_ID || 'admin',
+  identityId: process.env.IDENTITY_ID || 'dottore1',
   // identityName: Its the name of the user that will be used to run the server (wallet).
   // In this case Hurley also handles an standard (like user1, user2, user3) depending on how many to told it to create.
-  identityName: process.env.IDENTITY || 'admin',
+  identityName: process.env.IDENTITY || 'dottore1',
   // identityOrg: Just like identityName this property refers to the organization of the identity which will be used
   // to run, query, and submit transactions to the network.
   identityOrg,

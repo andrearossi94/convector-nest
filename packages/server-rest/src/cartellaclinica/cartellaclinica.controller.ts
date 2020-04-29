@@ -59,9 +59,12 @@ export class CartellaclinicaController {
   @ApiOkResponse({ description: c.API_RESPONSE_FOUND_RECORDS, type: CreateCartellaclinicaDto })
   @ApiInternalServerErrorResponse({ description: c.API_RESPONSE_INTERNAL_SERVER_ERROR })
   @ApiUnauthorizedResponse({ description: c.API_RESPONSE_UNAUTHORIZED }) 
-  public async create(@Param('cartellaclinica') cartellaclinica: Cartellaclinica): Promise<Cartellaclinica> {
+   /*public async create(@Body('cartellaclinica') cartellaclinica: Cartellaclinica): Promise<Cartellaclinica> {
     try {
-      return await CartellaclinicaControllerBackEnd.create(cartellaclinica) as unknown as Promise<Cartellaclinica>;
+      return await CartellaclinicaControllerBackEnd.create(cartellaclinica) as unknown as Promise<Cartellaclinica>; */
+      public async create(@Body() cartellaclinicaDto: CreateCartellaclinicaDto): Promise<Cartellaclinica> {
+        try {
+          return await CartellaclinicaControllerBackEnd.create(cartellaclinicaDto.cartellaclinica);
     } catch (err) {
       Logger.error(JSON.stringify(err));
       const message: string = (err.responses[0]) ? err.responses[0].error.message : c.API_RESPONSE_INTERNAL_SERVER_ERROR;
