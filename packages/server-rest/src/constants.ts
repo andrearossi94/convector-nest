@@ -1,7 +1,7 @@
 // api : https status
 const API_RESPONSE_BAD_REQUEST: string = 'Bad Request';
 const API_RESPONSE_CREATED: string = 'The record has been successfully created';
-const API_RESPONSE_INTERNAL_SERVER_ERROR: string = 'Internal server error';
+const API_RESPONSE_INTERNAL_SERVER_ERROR: string = 'This identity is not allowed to change this parameters';
 const API_RESPONSE_UNAUTHORIZED: string = 'Unauthorized';
 // api : shared
 const API_RESPONSE_FOUND_RECORD: string = 'The found record';

@@ -14,9 +14,9 @@ import * as express from 'express';
 async function bootstrap() {
   // compose NestApplicationOptions
   const httpsOptions = {
-    // private-key.pem
+    // key private-key.pem
     key: fs.readFileSync('./config/server.key'),
-    // public-certificate.pem
+    // certificate public-certificate.pem
     cert: fs.readFileSync('./config/server.crt'),
   };
   const server = express();

@@ -22,8 +22,6 @@ export class PersonaleController extends ConvectorController {
     const stub = (BaseStorage.current as any).stubHelper;
     return new ClientIdentity(stub.getStub());
   };
-  
-
   @Invokable()
   public async register(
     @Param(Personale)
@@ -58,8 +56,6 @@ export class PersonaleController extends ConvectorController {
       throw new Error('this paziente exists already');
     }
   }
-  
-
   @Invokable()
   public async get(
     @Param(yup.string())

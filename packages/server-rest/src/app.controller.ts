@@ -19,26 +19,26 @@ export class AppController {
     response.redirect(e.swaggerApiPath, HttpStatus.PERMANENT_REDIRECT);
   }
 
-  // @Body Dto using only to help swagger to have request parameters with Dto props
+  // @Body Dto usato per aiutare swagger ad avere i parametri richiesti con le proprietà definite nei DTO 
   @Post(`/${e.swaggerApiPath}/login`)
   @ApiUseTags(e.swaggerModuleTagAuth)
-  // implicit using authGuard local (non defaultStrategy)
+  // si utilizza authGuard local (non defaultStrategy)
   @UseGuards(AuthGuard('local'))
   @ApiOperation({ title: c.API_OPERATION_AUTH_LOGIN })
   @ApiCreatedResponse({ description: c.API_RESPONSE_LOGIN, type: LoginUserResponseDto })
   @ApiInternalServerErrorResponse({ description: c.API_RESPONSE_INTERNAL_SERVER_ERROR })
   @ApiUnauthorizedResponse({ description: c.API_RESPONSE_UNAUTHORIZED })
   async login(@Request() req, @Body() loginUser: LoginUserDto): Promise<LoginUserResponseDto> {
-    // passport will attach the authenticated user to the request object
-    // @Body() loginUser: LoginUserDto is used only in swagger api, else we don't have a object to fill with properties ex {"username": "johndoe","password": "12345678"}
+    // passport attaccherè l'user autenticato all'oggetto richiesto
+    // @Body() loginUser: LoginUserDto è usato solo in swagger api,altrimenti non avremmo l'oggetto da riempire con le proprietà
     return this.authService.login(req.user);
   }
 
-  // When GET /api/me route is hit, the Guard will automatically invoke our passport-jwt custom configured logic,
-  // validating the JWT, and assigning the user property to the Request object.
+  // Quando la route GET /api/me viene raggiunta, la Guard automaticamente chiamerà la nostra logica di configurazione personalizzata di passport-jwt,
+  // validazione del jwt e assegnargli la property dell'utente al Request Object
   @Get(`/${e.swaggerApiPath}/me`)
   @ApiUseTags(e.swaggerModuleTagAuth)
-  // implicit using authGuard jwt
+  // si utilizza la strategia jwt
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()
   @ApiOperation({ title: c.API_OPERATION_GET_PROFILE })
@@ -49,3 +49,10 @@ export class AppController {
     return req.user;
   }
 }
+
+
+
+
+
+
+

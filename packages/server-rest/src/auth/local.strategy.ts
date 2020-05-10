@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
-  // strategy requires some initialization
+  // Localstrategy viene richiamata da AuthService
   constructor(private readonly authService: AuthService) {
     super();
   }

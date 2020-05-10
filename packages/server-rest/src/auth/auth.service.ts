@@ -13,7 +13,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) { }
 
-  // called by LocalStrategy
+  // richiamata da LocalStrategy
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
     let authorized: boolean;
@@ -26,19 +26,19 @@ export class AuthService {
     if (authorized) {
       // protect expose password property to outside
       // use spread operator to assign password to password, and add all the other user props to result
-      // required .toJSON()
+      // richiesto .toJSON()
       const { password, ...result } = user.toJSON();
       return result;
     }
     return null;
   }
 
-  // called by appController
+  // richiamata da appController
   async login(user: User) {
-    // note: we choose a property name of sub to hold our userId value to be consistent with JWT standards
-    const payload = { sub: user.id, username: user.username /*, email: user.email*/};
+    // scegliamo una proprietà sub per mantenere il nostro valore userId in modo da essere coerente con gli standard JWT, insieme alle altre proprietà da visualizzare
+    const payload = { sub: user.id, username: user.username , email: user.email, firstname: user.firstname, lastname: user.lastname, roles: user.roles};
     return {
-      // generate JWT from a subset of the user object properties
+      // genera un jwt da un sottoinsieme delle proprietà dell'oggetto utente
       accessToken: this.jwtService.sign(payload),
     };
   }
